@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{title.entry}">entry</title>
+</head>
+<body>
+<form th:action="@{/calc}" method="post" th:object="${calcForm}">
+  <div>
+    <input type="text" th:field="*{leftNum}">
+    +
+    <input type="text" th:field="*{rightNum}">
+  </div>
+  <button type="submit" th:text="#{button.send}"></button>
+  <input type="submit" value="계산">
+  <ul th:if="${#fields.hasErrors('*')}">
+    <li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+<!--    특정 필드의 에러를 받고 싶을 때는 인수로 field 명 설정-->
+  </ul>
+</form>
+</body>
+</html>
